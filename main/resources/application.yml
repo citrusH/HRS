@@ -1,0 +1,45 @@
+
+server:
+  port: 8080
+#  port 8080:
+spring:
+  quartz:
+    job-store-type: MEMORY
+    properties:
+      org:
+        quartz:
+          threadPool:
+            threadCount: 1
+    scheduler-name: myScheduler
+    job-details:
+      myJob:
+        durability: true
+        job-class: com.team.hotel.commom.AutoCallJob
+    trigger-details:
+      myTrigger:
+        start-time: 2023-06-10T09:00:00Z
+        repeat-interval: 10000
+        repeat-count: -1
+  mail:
+    host: smtp.qq.com
+    password: suqhcuclxuoudich
+    port: 465
+    username: 2506128241@qq.com
+  application:
+    name: demo
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/hotelsql?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: root
+      password: "111111"
+
+mybatis-plus:
+  configuration:
+    #    address_book---->AddressBook
+    #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID
